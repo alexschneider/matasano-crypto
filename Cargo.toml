@@ -3,3 +3,5 @@
 name = "matasano"
 version = "0.0.1"
 authors = ["Alex Schneider <aschne19@lion.lmu.edu>"]
+[dependencies]
+hyper = "0.2.0"
