@@ -10,10 +10,10 @@ fn get_file() -> String {
     res.read_to_string().unwrap()
 }
 
-pub fn detect_single_char_xor() -> String {
+pub fn detect_single_char_xor_decode() -> String {
     let mut possibilities = vec![];
     for line in get_file().lines() {
-        possibilities.push(find_xor_byte(line));
+        possibilities.push(find_xor_byte_decode(line));
     }
     find_best(possibilities)
 }

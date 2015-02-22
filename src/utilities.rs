@@ -30,6 +30,33 @@ pub fn hex2bin(hex: &[u8]) -> Vec<u8> {
     bin_digits
 }
 
+pub fn hex2bytes(hex: &[u8]) -> Vec<u8> {
+    let mut bytes = vec![];
+    for hex_digits in hex.chunks(2) {
+        let higher = hex_digits[0];
+        let lower = if hex_digits.len() == 2 {
+            hex_digits[1]
+        } else {
+            0
+        };
+        let this_byte = (higher << 4) + lower;
+        bytes.push(this_byte);
+    }
+    bytes
+}
+
+pub fn bytes2hex(bytes: &[u8]) -> Vec<u8> {
+    let mut hex = vec![];
+    for byte in bytes.iter() {
+        hex.push((byte >> 4) & 0xF); // Higher
+        hex.push(byte & 0xF);        // Lower
+    }
+    if *hex.last().unwrap() == 0 {
+        hex.pop();
+    }
+    hex
+}
+
 pub fn bin2hex(bin: &[u8]) -> Vec<u8> {
     let mut hex_digits = vec![];
     for digits in bin.chunks(4) {
@@ -65,7 +92,6 @@ pub fn hex2hex_pretty(hex: &[u8]) -> String {
 }
 
 pub fn base64_2_base64_pretty(base64: &[u8]) -> String {
-
     let pretty_base64 = base64.iter().map(|&x| match x {
         0...25 => (('A' as u8) + x) as char,
         26...51 => (('a' as u8) + x - 26) as char,
