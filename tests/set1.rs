@@ -5,8 +5,11 @@ use matasano::*;
 #[test]
 fn challenge_1() {
     assert_eq!(
-        hex2base64::hex2base64_pretty("49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"),
-                                      "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
+        hex2base64::hex2base64_pretty(
+            "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69\
+            736f6e6f7573206d757368726f6f6d"
+        ),
+        "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
     )
 }
 
@@ -23,7 +26,9 @@ fn challenge_2() {
 #[test]
 fn challenge_3() {
     assert_eq!(
-        single_byte_xor::find_xor_byte_decode("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"),
+        single_byte_xor::find_xor_byte_decode(
+            "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
+        ),
         "Cooking MC\'s like a pound of bacon"
     )
 }
