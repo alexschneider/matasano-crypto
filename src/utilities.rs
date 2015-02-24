@@ -95,7 +95,7 @@ pub fn base64_2_base64_pretty(base64: Vec<u8>) -> String {
     .collect()
 }
 
-fn score(score_string: &str) -> usize {
+fn score(score_string: &&String) -> usize {
     // From http://en.wikipedia.org/wiki/Letter_frequency
     score_string
     .chars()
@@ -134,7 +134,7 @@ fn score(score_string: &str) -> usize {
 pub fn find_best(strings: Vec<String>) -> String {
     strings
     .iter()
-    .max_by(|x| score(x))
+    .max_by(score)
     .unwrap()
     .clone()
 }
