@@ -1,5 +1,7 @@
 #![feature(collections)]
 #![feature(io)]
+#![feature(unicode)]
+#![feature(core)]
 
 pub mod hex2base64;
 pub mod fixed_xor;
