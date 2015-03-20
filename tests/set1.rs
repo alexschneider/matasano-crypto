@@ -56,3 +56,8 @@ fn challenge_5() {
 
     )
 }
+
+#[test]
+fn challenge_6() {
+    repeating_key_xor_break::break_single_char_xor();
+}

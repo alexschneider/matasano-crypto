@@ -1,5 +1,28 @@
-
+use std::ascii::AsciiExt;
+use std::num::Int;
 static HEX_STRING: &'static str = "0123456789ABCDEF";
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    
+    #[test]
+    fn test_hamming_distance() {
+        assert_eq!(
+            hamming_distance(b"this is a test".to_vec(), 
+                             b"wokka wokka!!!".to_vec()
+            ), 
+            37
+        )
+    }
+}
+
+pub fn hamming_distance(string1: Vec<u8>, string2: Vec<u8>) -> u32 {
+    string1.iter().zip(string2.iter())
+    .fold(0u32, 
+          |acc, (char1, char2)| acc + (char1 ^ char2).count_ones()
+    )
+}
 
 pub fn bin2base64(bin: Vec<u8>) -> Vec<u8> {
     bin
@@ -64,10 +87,11 @@ pub fn bin2hex(bin: Vec<u8>) -> Vec<u8> {
 
 pub fn hex_pretty2hex(hex: &str) -> Vec<u8> {
     hex
+    .to_ascii_uppercase()
     .chars()
     .map(|c|
         HEX_STRING
-        .find(c.to_uppercase())
+        .find(c)
         .expect("Invalid hex string")
         as u8
     )
@@ -138,3 +162,4 @@ pub fn find_best(strings: Vec<String>) -> String {
     .unwrap()
     .clone()
 }
+
