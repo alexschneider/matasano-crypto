@@ -9,15 +9,15 @@ mod tests {
     #[test]
     fn test_hamming_distance() {
         assert_eq!(
-            hamming_distance(b"this is a test".to_vec(), 
-                             b"wokka wokka!!!".to_vec()
+            hamming_distance(b"this is a test", 
+                             b"wokka wokka!!!"
             ), 
             37
         )
     }
 }
 
-pub fn hamming_distance(string1: Vec<u8>, string2: Vec<u8>) -> u32 {
+pub fn hamming_distance(string1: &[u8], string2: &[u8]) -> u32 {
     string1.iter().zip(string2.iter())
     .fold(0u32, 
           |acc, (char1, char2)| acc + (char1 ^ char2).count_ones()
